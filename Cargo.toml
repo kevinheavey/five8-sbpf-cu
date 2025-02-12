@@ -1,0 +1,33 @@
+[package]
+name = "five8-sbpf-cu"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+bs58 = "0.5.1"
+five8 = "0.2.1"
+solana-account-info = "2.1.13"
+solana-msg = "2.1.13"
+solana-program-entrypoint = "2.1.13"
+solana-program-error = "2.1.13"
+solana-pubkey = "2.1.13"
+
+[dev-dependencies]
+litesvm = "0.5.0"
+solana-instruction = "2.1.13"
+solana-sdk = "2.1.13"
+
+[features]
+custom-heap = []
+custom-panic = []
+no-entrypoint = []
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = [
+    'cfg(target_os, values("solana"))',
+    'cfg(feature, values("frozen-abi", "no-entrypoint"))',
+]
